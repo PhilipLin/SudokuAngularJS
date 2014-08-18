@@ -4,6 +4,15 @@
 .black{
 	color: black;
 }
+.green{
+	color: rgb(50,200,50);
+}
+.greyBack{
+	background-color:#D3D3D3;
+}
+.whiteBack{
+	background-color:white;
+}
 .square{
 	height: 60px;
 	width: 60px;

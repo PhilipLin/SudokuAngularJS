@@ -8,7 +8,10 @@ app.service('generateBoardService', function () {
     	for(var i = 0; i < 9; i ++) {
     		var temp = []
 	    	for(var j = 0; j < 9; j ++) {
-	    		temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black'});
+	    		if((j<3 && i<3) || (j>5 && i>5) || (j<3 && i>5) || (j>5 && i<3) || (i<6 && i>2 && j<6 && j>2))
+	    			temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black','background':'whiteBack'});
+	    		else
+	    			temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black','background':'greyBack'});
 	    	}
 	    	board.push(temp);
     	}
