@@ -5,10 +5,10 @@ app.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/sudoku', {
-        templateUrl: 'views/sudoku.html',
+        templateUrl : 'views/sudoku.html',
         //controller: 'sudokuCtrl'
       }).
       otherwise({
-        redirectTo: '/sudoku'
+        redirectTo : '/sudoku'
       });
   }]);

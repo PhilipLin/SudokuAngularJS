@@ -5,9 +5,9 @@ app.service('generateBoardService', function () {
 		var board = [];
 
 		//GENERATING ROOT BOARD
-    	for(var i = 0; i < 9; i ++) {
+    	for(var i = 0; i < 9; i++) {
     		var temp = []
-	    	for(var j = 0; j < 9; j ++) {
+	    	for(var j = 0; j < 9; j++) {
 	    		if((j<3 && i<3) || (j>5 && i>5) || (j<3 && i>5) || (j>5 && i<3) || (i<6 && i>2 && j<6 && j>2))
 	    			temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black','background':'whiteBack'});
 	    		else
@@ -17,38 +17,38 @@ app.service('generateBoardService', function () {
     	}
 
 	    //swap columns 20 times
-	    for(var i = 0; i<20; i++){
+	    for(var i = 0; i < 20; i++){
 	        var c1 = Math.floor(Math.random() * 3);
 	        var c2 = (c1 + Math.floor(Math.random() * 2) + 1 ) % 3;
 	        var b = Math.floor(Math.random() * 3);
 	        var temp;
-	        for(var i2=0;i2<9;i2++){
-	            temp = board[i2][c1+b*3].value;
-	            board[i2][c1+b*3].value = board[i2][c2+b*3].value;
-	            board[i2][c2+b*3].value = temp;
+	        for(var j = 0; j < 9; j++){
+	            temp = board[j][c1+b*3].value;
+	            board[j][c1+b*3].value = board[j][c2+b*3].value;
+	            board[j][c2+b*3].value = temp;
 	        }
 	    }
 
 	    //swap rows 20 times
-	    for(var i = 0; i<20; i++){
+	    for(var i = 0; i < 20; i++){
 	        var r1 = Math.floor(Math.random() * 3);
-	        var r2 = (r1 + Math.floor(Math.random() * 2) + 1 ) % 3;
+	        var r2 = (r1 + Math.floor(Math.random() * 2) + 1) % 3;
 	        var b = Math.floor(Math.random() * 3);
 	        var temp;
-	        for(var i2=0;i2<9;i2++){
-	            temp = board[r1+b*3][i2].value;
-	            board[r1+b*3][i2].value = board[r2+b*3][i2].value;
-	            board[r2+b*3][i2].value = temp;
+	        for(var j = 0; j < 9; j++){
+	            temp = board[r1+b*3][j].value;
+	            board[r1+b*3][j].value = board[r2+b*3][j].value;
+	            board[r2+b*3][j].value = temp;
 	        }
 	    }
 
 	    //block out 20 blocks could have overlaps. Just for testing purposes
-	    for(var i=0;i<20;i++){
+	    for(var i = 0; i < 20; i++){
 	        var x = Math.floor(Math.random() * 9);
 	        var y = Math.floor(Math.random() * 9);
-	        if(board[x][y].value!=undefined)
-	            board[x][y].value=undefined;
-	        board[x][y].change=true;
+	        if(board[x][y].value !== undefined)
+	            board[x][y].value = undefined;
+	        board[x][y].change = true;
 	    }
 
 	    return board;

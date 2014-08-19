@@ -7,42 +7,6 @@
 <body ng-Controller="sudokuCtrl" ng-keydown="keydown($event)">
 
 	<ng-view></ng-view>
-    <script>
-        /*document.addEventListener('keydown', function(event) {
-            if(event.keyCode >= 49 && event.keyCode<=57) {
-                if(currDiv){
-                    var scope = angular.element(document.body).scope();
-                    scope.$apply(function(){
-                        var pos = currDiv.id;
-                        if(scope.storage[pos.charAt(0)][pos.charAt(1)].change){
-                            currDiv.innerHTML=event.keyCode-48;
-                            scope.storage[pos.charAt(0)][pos.charAt(1)].value = event.keyCode-48;
-                            //CHECK FOR FINISH!!!
-                            var board = scope.storage;
-                            if(checkBoard(board))
-                                alert("YOU WON!");
-                        }
-                    });
-                }
-            }
-        });
-        var currDiv;
-        function modifyBlock(item){
-            console.log('clikc');
-            if(currDiv==item){
-                currDiv.setAttribute('style','color: black');
-                currDiv = undefined;
-            }
-            else{
-                if(currDiv)
-                    currDiv.setAttribute('style','color: black');
-                currDiv = item;
-                item.setAttribute('style', 'color: blue');
-            }
-        }*/
-    </script>
-	
-
 
 
 	<!-- vendor dependencies -->
