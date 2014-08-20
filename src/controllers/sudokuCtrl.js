@@ -58,4 +58,10 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
             return { 'color': 'black', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
         return {'font-style': 'italic', 'color' : '#b25fdc', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
     };
-}]);
+}])
+.directive('sudokuHeader', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'directives/sudoku-Header.html'
+    };
+});
