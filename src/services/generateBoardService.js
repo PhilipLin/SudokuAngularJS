@@ -46,8 +46,8 @@ app.service('generateBoardService', function () {
 	    for(var i = 0; i < 20; i++){
 	        var x = Math.floor(Math.random() * 9);
 	        var y = Math.floor(Math.random() * 9);
-	        if(board[x][y].value !== undefined)
-	            board[x][y].value = undefined;
+	        if(board[x][y].value !== undefined);
+	            board[x][y].value = undefined; 
 	        board[x][y].change = true;
 	    }
 

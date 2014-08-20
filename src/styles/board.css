@@ -14,14 +14,26 @@
 	background-color: white;
 }
 .square{
+	position:relative;
 	height: 60px;
 	width: 60px;
 	display: inline-block;
 	border-style: solid;
 	border-width: 2px;
 	text-align: center;
-	margin-left: 15px;
-	margin-top: 15px;
-	display: table-cell; 
-	vertical-align: middle;
+    overflow: visible;
+}
+.sideButton{
+    height: 30px;
+	width: 100px;
+}
+.center{
+    text-align: center;
+    height: 40px;
+	width: 100%;
+}
+.centerTable{
+    text-align: center;
+    height: 64px;
+	width: 100%;
 }
