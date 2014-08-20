@@ -11,6 +11,12 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
         $scope.currBlock=undefined;
         $scope.beforeColor=undefined;
     }
+    $scope.clear_Game = function(){
+        for(var i = 0; i< $scope.storage.length; i++)
+            for(var j = 0; j< $scope.storage[0].length; j++)
+                if($scope.storage[i][j].change === true)
+                    $scope.storage[i][j].value = undefined;
+    }
     $scope.click_Action = function (block) {
         if($scope.currBlock === block){
             $scope.currBlock.color = $scope.beforeColor;;

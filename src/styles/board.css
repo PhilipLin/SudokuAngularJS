@@ -30,6 +30,7 @@
 }
 .center{
     text-align: center;
+    left: 50%;
     height: 40px;
 	width: 100%;
 }
