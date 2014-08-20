@@ -27,6 +27,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     }
     //if keydown and clicked, then change the value of the block accordingly
 	$scope.keydown = function (event) {
+        console.log(event.keyCode);
         if(event.keyCode > 48 && event.keyCode<58 && $scope.currBlock) {
             $scope.currBlock.value=event.keyCode-48;
             if(validateBoardService.checkBoard($scope.storage))//WINNING CONDITIONS
@@ -48,7 +49,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     //sets the style of the value inside the block, bold or not bold
     $scope.set_Bold = function (block) {
         if(block.change === false)
-            return {'color' : 'black', 'font-weight': '800', 'font-size' : '25px', 'position':'absolute','margin-top':'30%', 'margin-left':'-8%'};
-        return {'color' : 'black', 'font-weight': 'normal', 'font-size' : '20px', 'position':'absolute','margin-top':'30%', 'margin-left':'-8%'};
+            return { 'color': 'black', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
+        return {'font-style': 'italic', 'color' : '#b25fdc', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
     };
 }]);
