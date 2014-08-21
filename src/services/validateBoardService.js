@@ -4,9 +4,9 @@ app.service('validateBoardService', function () {
 		var check = true;
 		//repaint to black because changes could have happened to the coloring
 		for(var x = 0 ; x < board[0].length; x++)
-			for(var y=0; y < board.length; y++)
+			for(var y = 0; y < board.length; y++)
 				if(board[x][y].color !== 'blue')
-					board[x][y].color = 'black';
+					board[x][y].setColor('black');
 
 		//METHOD OF CHECKING: array of 9 falses
 		//Loop through ROW/COLUMN/BOX and for each value change total[val-1] to true
@@ -21,13 +21,13 @@ app.service('validateBoardService', function () {
 			if(!(total[0] && total[1] && total[2] && total[3] && total[4] && total[5] && total[6] && total[7] && total[8])){
 				for(var y = 0; y < board.length; y++)
 					if(board[x][y].color!=='green')
-			    		board[x][y].color='black';
+			    		board[x][y].setColor('black');
 			    check = false;//you didn't win
 			}
 			//row has 123456789
 			else{
 				for(var y = 0; y < board.length; y++)
-			    	board[x][y].color='green';
+			    	board[x][y].setColor('green');
 			}
 		}
 
@@ -40,13 +40,13 @@ app.service('validateBoardService', function () {
 			if(!(total[0] && total[1] && total[2] && total[3] && total[4] && total[5] && total[6] && total[7] && total[8])){
 				for(var x = 0; x < board[0].length; x++)
 					if(board[x][y].color !== 'green')
-			    		board[x][y].color = 'black';
+			    		board[x][y].setColor('black');
 			    check = false;//you didn't win
 			}
 			//column has 123456789
 			else{
 				for(var x = 0; x < board[0].length; x++)
-			    	board[x][y].color = 'green';
+			    	board[x][y].setColor('green');
 			}
 		}
 
@@ -65,28 +65,28 @@ app.service('validateBoardService', function () {
 			    total[board[x+2][y+2].value-1] = true;
 			    //box does not have 123456789
 				if(!(total[0] && total[1] && total[2] && total[3] && total[4] && total[5] && total[6] && total[7] && total[8])){
-					if(board[x][y].color !== 'green') { board[x][y].color = 'black'; }
-					if(board[x][y+1].color !== 'green') { board[x][y+1].color = 'black'; }
-				    if(board[x][y+2].color !== 'green') { board[x][y+2].color = 'black'; }
-				    if(board[x+1][y].color !== 'green') { board[x+1][y].color = 'black'; }
-				    if(board[x+1][y+1].color !== 'green') { board[x+1][y+1].color = 'black'; }
-				    if(board[x+1][y+2].color !== 'green') { board[x+1][y+2].color = 'black'; }
-				    if(board[x+2][y].color !== 'green') { board[x+2][y].color = 'black'; }
-				    if(board[x+2][y+1].color !== 'green') { board[x+2][y+1].color = 'black'; }
-				    if(board[x+2][y+2].color !== 'green') { board[x+2][y+2].color = 'black'; }
+					if(board[x][y].color !== 'green') { board[x][y].setColor('black'); }
+					if(board[x][y+1].color !== 'green') { board[x][y+1].setColor('black'); }
+				    if(board[x][y+2].color !== 'green') { board[x][y+2].setColor('black'); }
+				    if(board[x+1][y].color !== 'green') { board[x+1][y].setColor('black'); }
+				    if(board[x+1][y+1].color !== 'green') { board[x+1][y+1].setColor('black'); }
+				    if(board[x+1][y+2].color !== 'green') { board[x+1][y+2].setColor('black'); }
+				    if(board[x+2][y].color !== 'green') { board[x+2][y].setColor('black'); }
+				    if(board[x+2][y+1].color !== 'green') { board[x+2][y+1].setColor('black');}
+				    if(board[x+2][y+2].color !== 'green') { board[x+2][y+2].setColor('black'); }
 				    check = false;//you didn't win
 				}
 				//box has 123456789
 				else{
-					board[x][y].color = 'green';
-				    board[x][y+1].color = 'green';
-				    board[x][y+2].color = 'green';
-				    board[x+1][y].color = 'green';
-				    board[x+1][y+1].color = 'green';
-				    board[x+1][y+2].color = 'green';
-				    board[x+2][y].color = 'green';
-				    board[x+2][y+1].color = 'green';
-				    board[x+2][y+2].color = 'green';
+					board[x][y].setColor('green');
+				    board[x][y+1].setColor('green');
+				    board[x][y+2].setColor('green');
+				    board[x+1][y].setColor('green');
+				    board[x+1][y+1].setColor('green');
+				    board[x+1][y+2].setColor('green');
+				    board[x+2][y].setColor('green');
+				    board[x+2][y+1].setColor('green');
+				    board[x+2][y+2].setColor('green');
 				}
 			}
 		}

@@ -14,12 +14,12 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     $scope.clear_Game = function(){
         for(var i = 0; i< $scope.storage.length; i++)
             for(var j = 0; j< $scope.storage[0].length; j++)
-                if($scope.storage[i][j].change === true)
-                    $scope.storage[i][j].value = undefined;
+                if($scope.storage[i][j].change)
+                    $scope.storage[i][j].setValue(undefined);
     }
     $scope.click_Action = function (block) {
         if($scope.currBlock === block){
-            $scope.currBlock.color = $scope.beforeColor;;
+            $scope.currBlock.setColor($scope.beforeColor);
             $scope.currBlock = undefined;
         }
         else{
@@ -28,25 +28,24 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
             }
             $scope.beforeColor = block.color;
             $scope.currBlock = block;
-            block.color = 'blue';
+            block.setColor('blue');
         }
     }
     //if keydown and clicked, then change the value of the block accordingly
 	$scope.keydown = function (event) {
-        console.log(event.keyCode);
-        if(event.keyCode > 48 && event.keyCode<58 && $scope.currBlock) {
-            $scope.currBlock.value=event.keyCode-48;
+        if(event.keyCode > 48 && event.keyCode<58 && $scope.currBlock.change) {
+            $scope.currBlock.setValue(event.keyCode-48);
             if(validateBoardService.checkBoard($scope.storage))//WINNING CONDITIONS
             	alert("YOU WON!");
             if($scope.currBlock.color === 'green')
                 $scope.beforeColor = 'green';
             else{
-                $scope.currBlock.color = 'blue';
+                $scope.currBlock.setColor('blue');
                 $scope.beforeColor = 'black';
             }
         }
-        else if($scope.currBlock)//if pressed something other than 1-9, make it blank again
-            $scope.currBlock.value = undefined;
+        else if($scope.currBlock.change)//if pressed something other than 1-9, make it blank again
+            $scope.currBlock.setValue(undefined);
 	}
     //sets the class of the block: color and the background
     $scope.set_Color = function (block) {
@@ -54,7 +53,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     }
     //sets the style of the value inside the block, bold or not bold
     $scope.set_Bold = function (block) {
-        if(block.change === false)
+        if(!block.change)
             return { 'color': 'black', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
         return {'font-style': 'italic', 'color' : '#b25fdc', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
     };

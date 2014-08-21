@@ -1,5 +1,23 @@
 app.service('generateBoardService', function () {
 
+	function Block( value, x, y, background ) {
+		this.value = value;
+		this.x = x;
+		this.y = y;
+		this.background = background;
+		this.change = false;
+		this.color = 'black';
+		this.setColor = function (color) {
+			this.color = color;
+		};
+		this.setChange = function (change) {
+			this.change = change;
+		};
+		this.setValue = function (value) {
+			this.value = value;
+		};
+	}
+
 	var generateBoard = function () {
 
 		var board = [];
@@ -9,9 +27,9 @@ app.service('generateBoardService', function () {
     		var temp = []
 	    	for(var j = 0; j < 9; j++) {
 	    		if((j<3 && i<3) || (j>5 && i>5) || (j<3 && i>5) || (j>5 && i<3) || (i<6 && i>2 && j<6 && j>2))
-	    			temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black','background':'whiteBack'});
+	    			temp.push(new Block((i*3 + Math.floor(i/3) + j) % 9 + 1, i, j, 'whiteBack'));
 	    		else
-	    			temp.push({'value':(i*3 + Math.floor(i/3) + j) % 9 + 1,'x':i,'y':j,'change':false,'color':'black','background':'greyBack'});
+	    			temp.push(new Block((i*3 + Math.floor(i/3) + j) % 9 + 1, i, j, 'greyBack'));
 	    	}
 	    	board.push(temp);
     	}
@@ -24,8 +42,8 @@ app.service('generateBoardService', function () {
 	        var temp;
 	        for(var j = 0; j < 9; j++){
 	            temp = board[j][c1+b*3].value;
-	            board[j][c1+b*3].value = board[j][c2+b*3].value;
-	            board[j][c2+b*3].value = temp;
+	            board[j][c1+b*3].setValue(board[j][c2+b*3].value);
+	            board[j][c2+b*3].setValue(temp);
 	        }
 	    }
 
@@ -37,8 +55,8 @@ app.service('generateBoardService', function () {
 	        var temp;
 	        for(var j = 0; j < 9; j++){
 	            temp = board[r1+b*3][j].value;
-	            board[r1+b*3][j].value = board[r2+b*3][j].value;
-	            board[r2+b*3][j].value = temp;
+	            board[r1+b*3][j].setValue(board[r2+b*3][j].value);
+	            board[r2+b*3][j].setValue(temp);
 	        }
 	    }
 
@@ -47,8 +65,8 @@ app.service('generateBoardService', function () {
 	        var x = Math.floor(Math.random() * 9);
 	        var y = Math.floor(Math.random() * 9);
 	        if(board[x][y].value !== undefined);
-	            board[x][y].value = undefined; 
-	        board[x][y].change = true;
+	            board[x][y].setValue(undefined); 
+	        board[x][y].setChange(true);
 	    }
 
 	    return board;
