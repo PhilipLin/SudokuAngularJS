@@ -5,7 +5,7 @@ app.service('validateBoardService', function () {
 	function checkerRCB(){
 		var total = [false, false, false, false, false, false, false, false, false];
 		this.val = function (val) {
-			total[val-1]= true;
+			total[val-1] = true;
 		}
 		this.reset = function(){
 			for(var i = 0; i<total.length; i++)
@@ -16,6 +16,7 @@ app.service('validateBoardService', function () {
 		}
 
 	}
+
 	var checkBoard = function(board){
 		var check = true;
 

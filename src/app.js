@@ -10,6 +10,7 @@ app.config(['$routeProvider',
       }).
       when('/sudoku', {
         templateUrl : 'views/sudoku.html',
+        console.log(controller)
         //controller: 'sudokuCtrl'
       }).
       otherwise({

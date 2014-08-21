@@ -1,6 +1,7 @@
 app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardService', function($scope, generateBoardService, validateBoardService) {
 
     $scope.storage = generateBoardService.generateBoard();
+    $scope.name = 'Sudoku';
     validateBoardService.checkBoard($scope.storage);
     $scope.currBlock;
     $scope.beforeColor;
@@ -8,8 +9,8 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     $scope.new_Game = function(){
         $scope.storage = generateBoardService.generateBoard();
         validateBoardService.checkBoard($scope.storage);
-        $scope.currBlock=undefined;
-        $scope.beforeColor=undefined;
+        $scope.currBlock = undefined;
+        $scope.beforeColor = undefined;
     }
     $scope.clear_Game = function(){
         for(var i = 0; i< $scope.storage.length; i++)
@@ -33,7 +34,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
     }
     //if keydown and clicked, then change the value of the block accordingly
 	$scope.keydown = function (event) {
-        if(event.keyCode > 48 && event.keyCode<58 && $scope.currBlock.change) {
+        if(event.keyCode > 48 && event.keyCode<58 && $scope.currBlock && $scope.currBlock.change) {
             $scope.currBlock.setValue(event.keyCode-48);
             if(validateBoardService.checkBoard($scope.storage))//WINNING CONDITIONS
             	alert("YOU WON!");
@@ -44,7 +45,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
                 $scope.beforeColor = 'black';
             }
         }
-        else if($scope.currBlock.change)//if pressed something other than 1-9, make it blank again
+        else if($scope.currBlock && $scope.currBlock.change)//if pressed something other than 1-9, make it blank again
             $scope.currBlock.setValue(undefined);
 	}
     //sets the class of the block: color and the background
@@ -58,9 +59,15 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
         return {'font-style': 'italic', 'color' : '#b25fdc', 'font-weight': 'bold', 'font-size' : '30px', 'position':'absolute','margin-top':'25%', 'margin-left':'-8%'};
     };
 }])
-.directive('sudokuHeader', function() {
+.directive('gameHeader', function() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/sudoku-Header.html'
+      templateUrl: 'directives/gameHeader.html'
+    };
+})
+.directive('sudokuBoard', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'directives/sudokuBoard.html'
     };
 });
