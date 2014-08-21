@@ -16,6 +16,7 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
             for(var j = 0; j< $scope.storage[0].length; j++)
                 if($scope.storage[i][j].change)
                     $scope.storage[i][j].setValue(undefined);
+        validateBoardService.checkBoard($scope.storage);
     }
     $scope.click_Action = function (block) {
         if($scope.currBlock === block){
@@ -23,9 +24,8 @@ app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardS
             $scope.currBlock = undefined;
         }
         else{
-            if($scope.currBlock){
+            if($scope.currBlock)
                 $scope.currBlock.color = $scope.beforeColor;
-            }
             $scope.beforeColor = block.color;
             $scope.currBlock = block;
             block.setColor('blue');
