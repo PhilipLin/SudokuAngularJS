@@ -61,17 +61,18 @@ app.service('generateBoardService', function () {
 	    }
 
 	    //block out (#=difficulty) blocks
+	    var array = [];
+	    for(var i = 0; i < 9; i++)
+	    	for(var j = 0; j < 9; j++)
+	    		array.push({x:i, y:j});
+
 	    for(var i = 0; i < difficulty; i++){
-	        var x = Math.floor(Math.random() * 9);
-	        var y = Math.floor(Math.random() * 9);
-	        if(board[x][y].value !== undefined)
-	        {
-	            board[x][y].setValue(undefined); 
-	        	board[x][y].setChange(true);
-	    	}
-	    	else
-	    		i--;//do it again
+	        var rand = Math.floor(Math.random() * array.length);
+	        board[array[rand].x][array[rand].y].setValue(undefined); 
+	       	board[array[rand].x][array[rand].y].setChange(true);
+	       	array.splice(rand, 1)
 	    }
+
 
 	    return board;
 	};
