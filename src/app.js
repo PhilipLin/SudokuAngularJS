@@ -10,8 +10,8 @@ app.config(['$routeProvider',
       }).
       when('/sudoku', {
         templateUrl : 'views/sudoku.html',
-        console.log(controller)
-        //controller: 'sudokuCtrl'
+        controller: 'sudokuCtrl'
+        //console.log($routeProvider.controller);
       }).
       otherwise({
         redirectTo : '/home'
