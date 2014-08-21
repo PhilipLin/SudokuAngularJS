@@ -1,13 +1,14 @@
-app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardService', function($scope, generateBoardService, validateBoardService) {
+app.controller('sudokuCtrl', [ '$scope', 'generateBoardService', 'validateBoardService','$routeParams', function($scope, generateBoardService, validateBoardService,$routeParams) {
 
-    $scope.storage = generateBoardService.generateBoard();
+    console.log($routeParams);
+    $scope.storage = generateBoardService.generateBoard($routeParams.difficulty);
     $scope.name = 'Sudoku';
     validateBoardService.checkBoard($scope.storage);
     $scope.currBlock;
     $scope.beforeColor;
     //store information about the block you clicked and change the color to blue to better see it
     $scope.new_Game = function(){
-        $scope.storage = generateBoardService.generateBoard();
+        $scope.storage = generateBoardService.generateBoard($routeParams.difficulty);
         validateBoardService.checkBoard($scope.storage);
         $scope.currBlock = undefined;
         $scope.beforeColor = undefined;

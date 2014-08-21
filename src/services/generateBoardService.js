@@ -18,10 +18,10 @@ app.service('generateBoardService', function () {
 		};
 	}
 
-	var generateBoard = function () {
+	var generateBoard = function (difficulty) {
 
 		var board = [];
-
+		console.log(difficulty);
 		//GENERATING ROOT BOARD
     	for(var i = 0; i < 9; i++) {
     		var temp = []
@@ -60,8 +60,8 @@ app.service('generateBoardService', function () {
 	        }
 	    }
 
-	    //block out 20 blocks could have overlaps. Just for testing purposes
-	    for(var i = 0; i < 20; i++){
+	    //block out (#=difficulty) blocks
+	    for(var i = 0; i < difficulty; i++){
 	        var x = Math.floor(Math.random() * 9);
 	        var y = Math.floor(Math.random() * 9);
 	        if(board[x][y].value !== undefined)

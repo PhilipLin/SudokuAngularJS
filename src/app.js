@@ -8,7 +8,7 @@ app.config(['$routeProvider',
         templateUrl : 'views/home.html',
         //controller: 'sudokuCtrl'
       }).
-      when('/sudoku', {
+      when('/sudoku/:difficulty', {
         templateUrl : 'views/sudoku.html',
         controller: 'sudokuCtrl'
         //console.log($routeProvider.controller);
