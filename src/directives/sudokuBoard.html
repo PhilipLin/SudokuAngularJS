@@ -1,8 +1,0 @@
-<div ng-repeat="row in storage">
-	<div class="centerTable">
-		<div ng-repeat="block in row" ng-click="click_Action(block)" ng-class="set_Color(block)">
-			<span ng-bind="block.value" ng-if="block.change" ng-style="set_Bold({{block}})" ></span>
-			<span ng-bind="block.value" ng-if="!block.change" ng-style="set_Bold({{block}})"></span>
-		</div>
-	</div>
-</div>

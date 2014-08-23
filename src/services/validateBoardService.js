@@ -14,7 +14,6 @@ app.service('validateBoardService', function () {
 		this.check = function(){
 			return (total[0] && total[1] && total[2] && total[3] && total[4] && total[5] && total[6] && total[7] && total[8]);
 		}
-
 	}
 
 	var checkBoard = function(board){
@@ -22,10 +21,13 @@ app.service('validateBoardService', function () {
 
 		//repaint to black because changes could have happened to the coloring
 		var checkHelper = new checkerRCB();
-		for(var x = 0 ; x < board[0].length; x++)
-			for(var y = 0; y < board.length; y++)
-				if(board[x][y].color !== 'blue')
+		for(var x = 0 ; x < board[0].length; x++){
+			for(var y = 0; y < board.length; y++){
+				if(board[x][y].color !== 'blue'){
 					board[x][y].setColor('black');
+				}
+			}
+		}
 
 		//CHECK ALL THE ROWS AND COLOR ACCORDINGLY
 		for(var x = 0; x < board[0].length; x++){
@@ -34,33 +36,38 @@ app.service('validateBoardService', function () {
 			    checkHelper.val(board[x][y].value);
 			//row does not have 123456789
 			if(!checkHelper.check()){
-				for(var y = 0; y < board.length; y++)
+				for(var y = 0; y < board.length; y++){
 					if(board[x][y].color!=='green')
 			    		board[x][y].setColor('black');
+			    }
 			    check = false;//you didn't win
 			}
 			//row has 123456789
 			else{
-				for(var y = 0; y < board.length; y++)
+				for(var y = 0; y < board.length; y++){
 			    	board[x][y].setColor('green');
+			    }
 			}
 			checkHelper.reset();
 		}
 		//CHECK ALL THE COLUMNS AND COLOR ACCORDINGLY
 		for(var y = 0; y < board.length; y++){
-			for(var x = 0; x < board[0].length; x++)
+			for(var x = 0; x < board[0].length; x++){
 			    checkHelper.val(board[x][y].value);
+			}
 			//column does not have 123456789
 			if(!checkHelper.check()){
-				for(var x = 0; x < board[0].length; x++)
+				for(var x = 0; x < board[0].length; x++){
 					if(board[x][y].color !== 'green')
 			    		board[x][y].setColor('black');
+			    }
 			    check = false;//you didn't win
 			}
 			//column has 123456789
 			else{
-				for(var x = 0; x < board[0].length; x++)
+				for(var x = 0; x < board[0].length; x++){
 			    	board[x][y].setColor('green');
+			    }
 			}
 			checkHelper.reset();
 		}

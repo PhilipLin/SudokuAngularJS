@@ -21,7 +21,6 @@ app.service('generateBoardService', function () {
 	var generateBoard = function (difficulty) {
 
 		var board = [];
-		console.log(difficulty);
 		//GENERATING ROOT BOARD
     	for(var i = 0; i < 9; i++) {
     		var temp = []
@@ -62,9 +61,11 @@ app.service('generateBoardService', function () {
 
 	    //block out (#=difficulty) blocks
 	    var array = [];
-	    for(var i = 0; i < 9; i++)
-	    	for(var j = 0; j < 9; j++)
+	    for(var i = 0; i < 9; i++){
+	    	for(var j = 0; j < 9; j++){
 	    		array.push({x:i, y:j});
+	    	}
+	    }
 
 	    for(var i = 0; i < difficulty; i++){
 	        var rand = Math.floor(Math.random() * array.length);
